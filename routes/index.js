@@ -9,6 +9,6 @@ const user = require('./userRoutes')
 router.use('/sklad',require('./skladRoutes'))
 router.use('/prodaji',require('./prodajiRoutes'))
 router.use('/tovar',require('./tovarRoutes'))
-router.use('/user',user)
+router.use('/user',require('./userRoutes'))
 
 module.exports=router

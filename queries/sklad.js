@@ -8,7 +8,7 @@ class Warehouse{
                 tovar_article:article,
             }
         })
-        if(!found){
+        if(found.length==0){
             const created = await Sklad.create({
                 shelf,row,
                 tovar_article:article,
@@ -28,7 +28,7 @@ class Warehouse{
                 ]
             }
         })
-        if(found){
+        if(found.length>=1){
             const upd = await Sklad.update({
                 tovar_article:article,quantity
             },{
@@ -49,7 +49,7 @@ class Warehouse{
                 shelf:req.params.shelf
             }
         })
-        if(found){
+        if(found.length>=1){
             res.json(found)
         }
     }
@@ -59,7 +59,7 @@ class Warehouse{
                 row:req.params.row
             }
         })
-        if(found){
+        if(found.length>=1){
             res.json(found)
         }
     }
@@ -86,7 +86,7 @@ class Warehouse{
                     ]
                 }
             })
-            if( destroyed[0]=='1'|| destroyed[0]>=1) return res.json("Запис(ь/и) успешно удалены")
+            if( destroyed=='1'|| destroyed>=1) return res.json("Запис(ь/и) успешно удалены")
             else res.status(200).send("Удаление не выполнено")
         }
         else res.status(200).send(`Запись по №_shelf=${req.query.shelf} и №_row=${req.query.row} не найдена`)

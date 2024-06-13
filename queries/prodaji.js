@@ -8,7 +8,7 @@ class Sold{
                 data
             }
         })
-        if(!found){
+        if(found.length==0){
             const created = await Prodaji.create({
                 tovar_article: article,
                 quantity
@@ -24,7 +24,7 @@ class Sold{
                 data:req.params.data
             }
         })
-        if(found){
+        if(found.length>=1){
             const upd = await Prodaji.update({
                 article,quantity
             },{
@@ -42,7 +42,7 @@ class Sold{
                 data:req.params.data
             }
         })
-        if(found){
+        if(found.length>=1){
             res.json(found)
         }
     }
@@ -52,7 +52,7 @@ class Sold{
                 tovar_article:req.params.article
             }
         })
-        if(found){
+        if(found.length>=1){
             res.json(found)
         }
     }
@@ -67,13 +67,13 @@ class Sold{
                 data:req.params.data
             }
         })
-        if(found){
+        if(found.length>=1){
             const destroyed = await Prodaji.destroy({
                 where:{
                     data:req.params.data
                 }
             })
-            if( destroyed[0]=='1'|| destroyed[0]>=1) return res.json("Запись успешно удалена")
+            if( destroyed=='1'|| destroyed>=1) return res.json("Запись успешно удалена")
             else res.status(200).send("Удаление не выполнено")
         }
 

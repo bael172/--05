@@ -25,7 +25,7 @@ class Userok{
         if (passwd != user.passwd){
             res.send("Неверные данные")
         }
-        if (passwd == user.passwd){
+        if (login == user.login && passwd == user.passwd){
             res.send("OK")
         }
     }
